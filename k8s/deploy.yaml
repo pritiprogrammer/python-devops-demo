@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-devops-demo
+  labels:
+    app: python-devops-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-devops-demo
+  template:
+    metadata:
+      labels:
+        app: python-devops-demo
+    spec:
+      containers:
+      - name: python-devops-demo
+        image: priti081294/python-devops-demo:v1 
+        ports:
+        - containerPort: 5000

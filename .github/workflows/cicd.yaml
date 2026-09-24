@@ -42,8 +42,13 @@ jobs:
         shell: bash
         run: |
           echo ${{needs.ci.outputs.commit_id}}
-          pip install yq
-          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-devops-demo/values.yaml
+          sudo wget -qO /usr/local/bin/yq \
+          https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+          yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' \
+          charts/python-devops-demo/values.yaml
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

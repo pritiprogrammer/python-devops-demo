@@ -29,4 +29,4 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           push: true
-          tags: priti081294/python-devops-demo:${{github.sha}}}
+          tags: priti081294/python-devops-demo:${{github.sha}}

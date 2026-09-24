@@ -36,19 +36,24 @@ jobs:
     runs-on: self-hosted
     steps:
 
-      - uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3 
       - name: Modify values file
         shell: bash
         run: |
-          echo ${{needs.ci.outputs.commit_id}}
-          sudo wget -qO /usr/local/bin/yq \
-          https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          
+          echo "${{ needs.ci.outputs.commit_id }}"
+
+          sudo curl -L \
+            -o /usr/local/bin/yq \
+            https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+
           sudo chmod +x /usr/local/bin/yq
+
           yq --version
+
           yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' \
-          charts/python-devops-demo/values.yaml
+            charts/python-devops-demo/values.yaml
+
+
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

@@ -57,21 +57,32 @@ jobs:
 
           yq --version
 
+
       - name: Modify values file
         shell: bash
         run: |
-          echo "${{ needs.ci.outputs.commit_id }}"
+          echo "Commit ID: ${{ needs.ci.outputs.commit_id }}"
 
-          echo "Current directory:" 
-          pwd echo "Repository files:"
-          ls -la echo "Checking chart:"
+          echo "Current directory:"
+          pwd
+
+          echo "Repository files:"
+          ls -la
+
+          echo "Checking chart:"
           ls -la charts/python-devops-demo/
+
           echo "Current values.yaml:"
-          cat charts/python-devops-demo/values.yaml echo "yq version:"
-          yq --version echo "Updating image tag..."
-          yq -i '.image.tag = "${{ needs.ci.outputs.commit_id }}"' \
-          charts/python-devops-demo/values.yaml echo "Updated values.yaml:"
-           cat charts/python-devops-demo/values.yaml
+          cat charts/python-devops-demo/values.yaml
+
+          echo "yq version:"
+          yq --version
+
+          echo "Updating image tag:"
+          yq -i '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/python-devops-demo/values.yaml
+
+          echo "Updated values.yaml:"
+          cat charts/python-devops-demo/values.yaml
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

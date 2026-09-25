@@ -5,6 +5,7 @@ metadata:
   description: Python app display time
   annotations:
      github.com/project-slug: pritiprogrammer/python-devops-demo
+     backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   owner: development

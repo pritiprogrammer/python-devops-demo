@@ -1,0 +1,15 @@
+site_name: 'python-devops-demo'
+site_description: 'Main documentation for python-devops-demo'
+repo_url: hhttps://github.com/pritiprogrammer/python-devops-demo
+edit_uri: edit/main/docs
+
+plugins:
+  - techdocs-core
+  - redirects:
+      redirect_maps:
+        'index.md': 'overview/what-is-backstage.md'
+
+# For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
+nav:
+  - Overview:
+      - Getting started: 'docs/index.md'

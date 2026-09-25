@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: python-devops-demo
+  description: Python app display time
+  annotations:
+     github.com/project-slug: pritiprogrammer/python-devops-demo
+spec:
+  type: service
+  owner: development
+  lifecycle: experimental
